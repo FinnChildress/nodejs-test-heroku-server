@@ -1,3 +1,32 @@
+export default class MyButton extends Phaser.GameObjects.Image
+{
+    constructor(scene, x, y, texture, frame = null)
+    {
+        super(scene, x, y, texture, frame);
+
+        this.setInteractive();
+        this.isDown = false;
+
+        this.onPressed = null;
+        this.onReleased = null;
+
+        this.on('pointerdown', () => { this.isDown = true; });
+        this.on('pointerup', () => { this.pointerUp(); });
+        this.on('pointerout', () => { this.pointerUp(); });
+    }
+
+    pointerUp()
+    {
+        this.isDown = false;
+        if(this.onReleased != null) this.onReleased();
+    }
+
+    update()
+    {
+        if(this.isDown && this.onPressed != null) this.onPressed();
+    }
+}
+
 var config = {
   type: Phaser.AUTO,
   parent: 'phaser-example',
@@ -90,6 +119,15 @@ function create() {
   this.upButtonPressed = false;
 
   this.input.addPointer(2);
+
+  let button2 = new MyButton(this, 200, 200, 'right');
+  this.add.existing(button2);
+  button2.onPressed = ()=>{
+      console.log("BUTTON IS BEING PRESSED");
+  };
+  button2.onReleased= ()=>{
+      console.log("BUTTON WAS RELEASED");
+  };
 
   this.button = this.add.sprite(400, 300, 'right').setInteractive();
 
