@@ -88,6 +88,8 @@ function create() {
   this.rightButtonPressed = false;
   this.upButtonPressed = false;
 
+  this.point1 = this.input.pointer1;
+
   this.input.addPointer(2);
 
   this.button = this.add.sprite(400, 300, 'right').setInteractive();
@@ -135,13 +137,10 @@ function update() {
   } else {
     this.upKeyPressed = false;
   }
-  /*if (this.input.pointer1.isDown) {
-  	if (pointWithinInteractiveObject(button,pointer1.x,pointer1.y)) {
-  		this.rightKeyPressed = true;
-  	}
-  	//text.setText('UP');
+
+  if (this.point1.isDown) {
   	this.rightKeyPressed = true;
-  }*/
+  }
 
   if (left !== this.leftKeyPressed || right !== this.rightKeyPressed || up !== this.upKeyPressed) {
     this.socket.emit('playerInput', { left: this.leftKeyPressed , right: this.rightKeyPressed, up: this.upKeyPressed });
