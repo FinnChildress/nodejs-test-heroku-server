@@ -123,7 +123,7 @@ function update() {
   	text2.setText('POOP');
   }*/
 
-  text2.setText('POOP');
+  //text2.setText('POOP');
 
   if (this.cursors.left.isDown) {
     this.leftKeyPressed = true;
