@@ -117,7 +117,7 @@ function update() {
 
   if (this.cursors.left.isDown) {
     this.leftKeyPressed = true;
-  } else if (this.cursors.right.isDown || this.button.isDown) {
+  } else if (this.cursors.right.isDown || this.button.pointerdown) {
     this.rightKeyPressed = true;
   } else {
     this.leftKeyPressed = false;
