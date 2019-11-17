@@ -136,6 +136,7 @@ function update() {
   	if (pointWithinInteractiveObject(button,pointer1.x,pointer1.y)) {
   		this.rightKeyPressed = true;
   	}
+  	text.setText('UP');
   }
 
   if (left !== this.leftKeyPressed || right !== this.rightKeyPressed || up !== this.upKeyPressed) {
