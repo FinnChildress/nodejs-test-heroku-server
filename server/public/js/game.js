@@ -84,26 +84,27 @@ function create() {
   this.rightKeyPressed = false;
   this.upKeyPressed = false;
 
+  this.leftKeyPressed = false;
   this.leftButtonPressed = false;
   this.rightButtonPressed = false;
   this.upButtonPressed = false;
 
-  var button = this.add.sprite(400, 300, 'right').setInteractive();
+  this.input.addPointer(2);
+
+  this.button = this.add.sprite(400, 300, 'right').setInteractive();
 
   var text = this.add.text(10, 10, 'Tap the Button', { font: '16px Courier', fill: '#00ff00' });
 
   var text2 = this.add.text(10, 100, Phaser.VERSION + ' + v2', { font: '16px Courier', fill: '#ffffff' });
 
-  button.on('pointerdown', function () {
+  this.button.on('pointerdown', function () {
 
       this.setTint(Math.random() * 16000000);
-      this.rightButtonPressed = true;
       text.setText('DOWN');
 
   });
 
-  button.on('pointerup', function () {
-  		this.rightButtonPressed = false;
+  this.button.on('pointerup', function () {
       text.setText('UP');
 
   });
@@ -116,7 +117,7 @@ function update() {
 
   if (this.cursors.left.isDown) {
     this.leftKeyPressed = true;
-  } else if (this.cursors.right.isDown || this.rightButtonPressed == true) {
+  } else if (this.cursors.right.isDown || this.button.isDown) {
     this.rightKeyPressed = true;
   } else {
     this.leftKeyPressed = false;
