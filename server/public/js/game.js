@@ -116,7 +116,9 @@ function update() {
   const right = this.rightKeyPressed;
   const up = this.upKeyPressed;
 
-  
+  if(this.button.state == 'clicked') {
+  	text2.setText('POOP');
+  }
 
   if (this.cursors.left.isDown) {
     this.leftKeyPressed = true;
