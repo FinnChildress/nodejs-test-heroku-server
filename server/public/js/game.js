@@ -115,6 +115,12 @@ function update() {
   const right = this.rightKeyPressed;
   const up = this.upKeyPressed;
 
+  if (this.input.pointer1.isDown) {
+  	if (pointWithinInteractiveObject(button,pointer1.x,pointer1.y)) {
+  		this.rightKeyPressed = true;
+  	}
+  }
+
   if (this.cursors.left.isDown) {
     this.leftKeyPressed = true;
   } else if (this.cursors.right.isDown || this.button.pointerdown) {
