@@ -88,7 +88,6 @@ function create() {
   this.rightButtonPressed = false;
   this.upButtonPressed = false;
 
-  this.point1 = this.input.pointer1;
 
   this.input.addPointer(2);
 
