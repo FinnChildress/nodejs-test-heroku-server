@@ -137,6 +137,7 @@ function update() {
   		this.rightKeyPressed = true;
   	}
   	text.setText('UP');
+  	this.rightKeyPressed = true;
   }
 
   if (left !== this.leftKeyPressed || right !== this.rightKeyPressed || up !== this.upKeyPressed) {
