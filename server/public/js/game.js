@@ -115,7 +115,7 @@ function update() {
   const right = this.rightKeyPressed;
   const up = this.upKeyPressed;
 
-  if(this.button.state == 'clicked') {
+  if(this.button.state == 'clicked' || text.text == 'DOWN') {
   	text2.setText('POOP');
   }
 
@@ -133,6 +133,8 @@ function update() {
   } else {
     this.upKeyPressed = false;
   }
+  
+  this.rightKeyPressed = true;
 
   /*if (this.input.pointer1.isDown) {
   	if (pointWithinInteractiveObject(button,pointer1.x,pointer1.y)) {
