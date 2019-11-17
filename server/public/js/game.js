@@ -115,11 +115,7 @@ function update() {
   const right = this.rightKeyPressed;
   const up = this.upKeyPressed;
 
-  if (this.input.pointer1.isDown) {
-  	if (pointWithinInteractiveObject(button,pointer1.x,pointer1.y)) {
-  		this.rightKeyPressed = true;
-  	}
-  }
+  
 
   if (this.cursors.left.isDown) {
     this.leftKeyPressed = true;
@@ -134,6 +130,12 @@ function update() {
     this.upKeyPressed = true;
   } else {
     this.upKeyPressed = false;
+  }
+
+  if (this.input.pointer1.isDown) {
+  	if (pointWithinInteractiveObject(button,pointer1.x,pointer1.y)) {
+  		this.rightKeyPressed = true;
+  	}
   }
 
   if (left !== this.leftKeyPressed || right !== this.rightKeyPressed || up !== this.upKeyPressed) {
