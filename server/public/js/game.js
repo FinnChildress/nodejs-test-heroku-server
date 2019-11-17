@@ -44,7 +44,6 @@ function create() {
 
   this.socket.on('newPlayer', function (playerInfo) {
     displayPlayers(self, playerInfo, 'otherPlayer');
-    displayButton(self, 'button');
   });
 
   this.socket.on('disconnect', function (playerId) {
@@ -85,46 +84,29 @@ function create() {
   this.upKeyPressed = false;
   this.right_click = false;
 
-  let clickCount = 0;
-	this.clickCountText = this.add.text(100, 200, '');
+  button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
 
-	this.clickButton = this.add.text(100, 100, 'Click me!', { fill: '#0f0' })
-	  .setInteractive()
-	  .on('pointerover', () => this.enterButtonHoverState() )
-	  .on('pointerout', () => this.enterButtonRestState() )
-	  .on('pointerdown', () => this.enterButtonActiveState() )
-	  .on('pointerup', () => {
-	    this.updateClickCountText(++clickCount);
-	    this.enterButtonHoverState();
-	});
-
-	this.updateClickCountText(clickCount);
+  button.onInputOver.add(over, this);
+  button.onInputOut.add(out, this);
+  button.onInputUp.add(up, this);
 }
 
-updateClickCountText(clickCount) {
-this.clickCountText.setText(`Button has been clicked ${clickCount} times.`);
+function up() {
+    console.log('button up', arguments);
 }
 
-enterButtonHoverState() {
-this.clickButton.setStyle({ fill: '#ff0'});
+function over() {
+    console.log('button over');
 }
 
-enterButtonRestState() {
-this.clickButton.setStyle({ fill: '#0f0' });
+function out() {
+    console.log('button out');
 }
 
-enterButtonActiveState() {
-this.clickButton.setStyle({ fill: '#0ff' });
-}
-	
+function actionOnClick () {
 
-function rightmouseDown() {
-    this.right_click = true;
-    console.log('Button being clicked');
-}
-function rightmouseUp() {
-    this.right_click = false;
-    console.log('Button not being clicked');
+    this.star.visible =! this.star.visible;
+
 }
 
 function update() {
@@ -134,7 +116,7 @@ function update() {
 
   if (this.cursors.left.isDown) {
     this.leftKeyPressed = true;
-  } else if (this.cursors.right.isDown || this.right_click == true) {
+  } else if (this.cursors.right.isDown) {
     this.rightKeyPressed = true;
   } else {
     this.leftKeyPressed = false;
