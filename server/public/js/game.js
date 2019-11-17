@@ -84,7 +84,7 @@ function create() {
   this.rightKeyPressed = false;
   this.upKeyPressed = false;
 
-  this.leftButtonPressed = false;
+  /*this.leftButtonPressed = false;
   this.rightButtonPressed = false;
   this.upButtonPressed = false;
 
@@ -110,7 +110,7 @@ function create() {
   this.button.on('pointerup', function () {
       text.setText('UP');
       this.setState('unclicked');
-  });
+  });*/
 }
 
 function update() {
@@ -139,9 +139,9 @@ function update() {
     this.upKeyPressed = false;
   }
 
-  if (this.point1.isDown) {
+  /*if (this.point1.isDown) {
   	this.rightKeyPressed = true;
-  }
+  }*/
 
   if (left !== this.leftKeyPressed || right !== this.rightKeyPressed || up !== this.upKeyPressed) {
     this.socket.emit('playerInput', { left: this.leftKeyPressed , right: this.rightKeyPressed, up: this.upKeyPressed });

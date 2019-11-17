@@ -49,6 +49,27 @@ function create() {
     io.emit('starLocation', { x: self.star.x, y: self.star.y });
   });
 
+  this.button = this.add.sprite(400, 300, 'right').setInteractive();
+
+  var text = this.add.text(10, 10, 'Tap the Button', { font: '16px Courier', fill: '#00ff00' });
+
+  var text2 = this.add.text(10, 100, Phaser.VERSION + ' + v2', { font: '16px Courier', fill: '#ffffff' });
+
+  this.button.on('pointerdown', function () {
+
+      this.setTint(Math.random() * 16000000);
+      text.setText('DOWN');
+      this.setState('clicked');
+      this.socket.emit('playerInput', { left: this.leftKeyPressed , right: true, up: this.upKeyPressed });
+
+
+  });
+
+  this.button.on('pointerup', function () {
+      text.setText('UP');
+      this.setState('unclicked');
+  });
+
   io.on('connection', function (socket) {
     console.log('a user connected');
     // create a new player and add it to our players object
