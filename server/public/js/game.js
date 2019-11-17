@@ -84,7 +84,6 @@ function create() {
   this.rightKeyPressed = false;
   this.upKeyPressed = false;
 
-  this.leftKeyPressed = false;
   this.leftButtonPressed = false;
   this.rightButtonPressed = false;
   this.upButtonPressed = false;
