@@ -101,12 +101,13 @@ function create() {
 
       this.setTint(Math.random() * 16000000);
       text.setText('DOWN');
+      this.setState('clicked');
 
   });
 
   this.button.on('pointerup', function () {
       text.setText('UP');
-
+      this.setState('unclicked');
   });
 }
 
@@ -119,7 +120,7 @@ function update() {
 
   if (this.cursors.left.isDown) {
     this.leftKeyPressed = true;
-  } else if (this.cursors.right.isDown || this.button.pointerdown) {
+  } else if (this.cursors.right.isDown || this.button.state == 'clicked') {
     this.rightKeyPressed = true;
   } else {
     this.leftKeyPressed = false;
@@ -132,13 +133,13 @@ function update() {
     this.upKeyPressed = false;
   }
 
-  if (this.input.pointer1.isDown) {
+  /*if (this.input.pointer1.isDown) {
   	if (pointWithinInteractiveObject(button,pointer1.x,pointer1.y)) {
   		this.rightKeyPressed = true;
   	}
-  	text.setText('UP');
+  	//text.setText('UP');
   	this.rightKeyPressed = true;
-  }
+  }*/
 
   if (left !== this.leftKeyPressed || right !== this.rightKeyPressed || up !== this.upKeyPressed) {
     this.socket.emit('playerInput', { left: this.leftKeyPressed , right: this.rightKeyPressed, up: this.upKeyPressed });
