@@ -18,7 +18,7 @@ function preload() {
   this.load.image('ship', 'assets/spaceShips_001.png');
   this.load.image('otherPlayer', 'assets/enemyBlack5.png');
   this.load.image('star', 'assets/star_gold.png');
-  this.load.image('button', 'assets/right.png');
+  this.load.image('right', 'assets/right.png');
 }
 
 function create() {
@@ -83,18 +83,25 @@ function create() {
   this.rightKeyPressed = false;
   this.upKeyPressed = false;
 
-  button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
-  button.onInputUp.add(up, this);
-}
+  var button = this.add.sprite(400, 300, 'right').setInteractive();
 
-function up() {
-    this.rightKeyPressed = false;
-}
+  var text = this.add.text(10, 10, 'Tap the Button', { font: '16px Courier', fill: '#00ff00' });
 
-function actionOnClick () {
+  var text2 = this.add.text(10, 100, Phaser.VERSION + ' + v2', { font: '16px Courier', fill: '#ffffff' });
 
-    this.rightKeyPressed = true;
+  button.on('pointerdown', function () {
 
+      this.setTint(Math.random() * 16000000);
+
+      text.setText('DOWN');
+
+  });
+
+  button.on('pointerup', function () {
+
+      text.setText('UP');
+
+  });
 }
 
 function update() {
