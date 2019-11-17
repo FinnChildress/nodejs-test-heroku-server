@@ -1,5 +1,3 @@
-import { MyButton } from "./MyButton";
-
 var config = {
   type: Phaser.AUTO,
   parent: 'phaser-example',
@@ -92,15 +90,6 @@ function create() {
   this.upButtonPressed = false;
 
   this.input.addPointer(2);
-
-  let button2 = new MyButton(this, 200, 200, 'right');
-  this.add.existing(button2);
-  button2.onPressed = ()=>{
-      console.log("BUTTON IS BEING PRESSED");
-  };
-  button2.onReleased= ()=>{
-      console.log("BUTTON WAS RELEASED");
-  };
 
   this.button = this.add.sprite(400, 300, 'right').setInteractive();
 
