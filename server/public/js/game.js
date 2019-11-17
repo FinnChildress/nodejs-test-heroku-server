@@ -82,30 +82,18 @@ function create() {
   this.leftKeyPressed = false;
   this.rightKeyPressed = false;
   this.upKeyPressed = false;
-  this.right_click = false;
 
   button = game.add.button(game.world.centerX - 95, 400, 'button', actionOnClick, this, 2, 1, 0);
-
-  button.onInputOver.add(over, this);
-  button.onInputOut.add(out, this);
   button.onInputUp.add(up, this);
 }
 
 function up() {
-    console.log('button up', arguments);
-}
-
-function over() {
-    console.log('button over');
-}
-
-function out() {
-    console.log('button out');
+    this.rightKeyPressed = false;
 }
 
 function actionOnClick () {
 
-    this.star.visible =! this.star.visible;
+    this.rightKeyPressed = true;
 
 }
 
